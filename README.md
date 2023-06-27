@@ -1,7 +1,9 @@
+[![Nuget](https://img.shields.io/nuget/v/NebulaNetworkAutomation)](https://www.nuget.org/packages/NebulaNetworkAutomation)
 
-Helper C# library for automating Nebula Network operations.
+### Helper C# library for automating Nebula Network operations.
 
-Certificate creating and manipulation:
+
+#### Certificate creation and manipulation:
 
 ```cs
 public class CNebulaCert
