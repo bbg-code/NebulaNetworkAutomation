@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -20,4 +20,26 @@
     <Protobuf Include="Src\NebulaCert.proto" GrpcServices="None" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE.TXT">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>  
+  
+  <PropertyGroup>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Title>Helper C# library for automating Nebula Network operations.</Title>
+    <Authors>bogdan.bejan</Authors>
+    <Description>Helper C# library for automating Nebula Network operations.</Description>
+    <Copyright>Copyright (c) 2023 Bejan Bogdan Gabriel</Copyright>
+    <PackageProjectUrl>https://github.com/bbg-code/NebulaNetworkAutomation</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bbg-code/NebulaNetworkAutomation</RepositoryUrl>
+    <PackageLicenseFile>LICENSE.TXT</PackageLicenseFile>
+  </PropertyGroup>
+  
 </Project>
