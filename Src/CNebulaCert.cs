@@ -260,12 +260,15 @@ namespace NebulaNetworkAutomation
             return false;
         }
         //-----------------------------------------------------------------------
-        public bool IsSignatureValid(CNebulaCert inSigner)
+        public bool IsSignatureValid(in CNebulaCert inSigner)
         {
             if (inSigner == null)
                 return false;
-            if (!inSigner.IsValidCA())
-                return false;
+            if (inSigner.m_private_key != null)
+            {
+                if (!inSigner.IsValidCA())
+                    return false;
+            }
             if (IsExpired())
                 return false;
             if (m_cert == null)
