@@ -15,7 +15,7 @@ public class CNebulaCert
       public string? GetPrivateKeyPem();
       public DateTime? GetStartDate();
       public DateTime? GetEndDate();
-      public IPAddress? GetIPAdress();
+      public IPAddress? GetIPAddress();
       public IPAddress? GetIPMask();
       public bool IsExpired();
       public bool IsSignatureValid(CNebulaCert inSigner);

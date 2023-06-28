@@ -223,7 +223,7 @@ namespace NebulaNetworkAutomation
                 return new DateTime(1970, 1, 1).Add(TimeSpan.FromSeconds(m_cert.Details.NotAfter));
         }
         //-----------------------------------------------------------------------
-        public IPAddress? GetIPAdress()
+        public IPAddress? GetIPAddress()
         {
             if (m_cert == null)
                 return null;
@@ -269,6 +269,11 @@ namespace NebulaNetworkAutomation
                 if (!inSigner.IsValidCA())
                     return false;
             }
+            else
+            {
+                if (inSigner.IsExpired())
+                    return false;
+            }
             if (IsExpired())
                 return false;
             if (m_cert == null)
@@ -276,7 +281,7 @@ namespace NebulaNetworkAutomation
             if (m_cert.Details.IsCA)
                 return false;
 
-            //-----chech issuer
+            //-----check issuer
             byte[] s0 = m_cert.Details.Issuer.ToByteArray();
             byte[]? s1 = inSigner.GetSHA256();
             if (s1 == null)
@@ -288,7 +293,7 @@ namespace NebulaNetworkAutomation
                 if (s0[i] != s1[i])
                     return false;
 
-            //-----chech signature
+            //-----check signature
             if (inSigner.m_cert == null)
                 return false;
             byte[] pubKeyBytes = inSigner.m_cert.Details.PublicKey.ToByteArray();
