@@ -54,7 +54,7 @@ namespace NebulaNetworkAutomation
         {
             return new CPEM(inHeader, inData);
         }
-        public static CPEM? FromString(string? inStr, string? inExpextedHeader = null)
+        public static CPEM? FromString(string? inStr, string? inExpectedHeader = null)
         {
             if (inStr == null)
                 return null;
@@ -79,7 +79,7 @@ namespace NebulaNetworkAutomation
             if (strParts[1] != strParts[3])
                 return null;
 
-            if ((inExpextedHeader != null) && (inExpextedHeader!= strParts[1]))
+            if ((inExpectedHeader != null) && (inExpectedHeader!= strParts[1]))
                 return null;
 
             strParts[2] = strParts[2].Trim();

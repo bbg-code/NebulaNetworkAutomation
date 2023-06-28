@@ -31,7 +31,7 @@ namespace NebulaNetworkAutomation
 
 
             byte[] prv_key = privateKey.GetEncoded();
-            byte[] pub_pkey = publicKey.GetEncoded();
+            byte[] pub_key = publicKey.GetEncoded();
 
             RawNebulaCertificate raw_cert = new RawNebulaCertificate();
             raw_cert.Details = new RawNebulaCertificateDetails();
@@ -44,7 +44,7 @@ namespace NebulaNetworkAutomation
                 //(long)DateTime.UtcNow.AddYears(1).Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                 (long)StartDate.Add(ValidityPeriod).Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
 
-            raw_cert.Details.PublicKey = Google.Protobuf.ByteString.CopyFrom(pub_pkey);
+            raw_cert.Details.PublicKey = Google.Protobuf.ByteString.CopyFrom(pub_key);
             raw_cert.Details.IsCA = true;
             raw_cert.Details.Curve = Curve._25519;
 
@@ -71,7 +71,7 @@ namespace NebulaNetworkAutomation
             var publicKey = (Org.BouncyCastle.Crypto.Parameters.X25519PublicKeyParameters)pair.Public;
 
             byte[] prv_key = privateKey.GetEncoded();
-            byte[] pub_pkey = publicKey.GetEncoded();
+            byte[] pub_key = publicKey.GetEncoded();
 
             DateTime? caStartDate = inCA.GetStartDate();
             if (caStartDate == null)
@@ -111,7 +111,7 @@ namespace NebulaNetworkAutomation
                 //(long)inCA.GetEndDate().Subtract(TimeSpan.FromSeconds(1)).Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                 (long)accEndDate.Subtract(TimeSpan.FromSeconds(1)).Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
 
-            raw_cert.Details.PublicKey = Google.Protobuf.ByteString.CopyFrom(pub_pkey);
+            raw_cert.Details.PublicKey = Google.Protobuf.ByteString.CopyFrom(pub_key);
             raw_cert.Details.IsCA = false;
             raw_cert.Details.Issuer = Google.Protobuf.ByteString.CopyFrom(inCA.GetSHA256());
             raw_cert.Details.Curve = Curve._25519;
@@ -124,7 +124,7 @@ namespace NebulaNetworkAutomation
             return new CNebulaCert(raw_cert, prv_key);
         }
         //-----------------------------------------------------------------------
-        static public CNebulaCert? MakeFromPEM(in string? inCert, in string? inPrivateKey = null)
+        static public CNebulaCert? MakeFromPEM(in string inCert, in string? inPrivateKey = null)
         {
             CPEM? p = CPEM.FromString(inCert, c_NebulaCertID);
             if (p == null)
