@@ -52,9 +52,13 @@ namespace NebulaNetworkAutomation
         }
         public static CPEM? FromBytes(byte[] inData, string inHeader)
         {
+            if (inData == null)
+                return null;
+            if (inHeader == null)
+                return null;
             return new CPEM(inHeader, inData);
         }
-        public static CPEM? FromString(string? inStr, string? inExpectedHeader = null)
+        public static CPEM? FromString(string inStr, string? inExpectedHeader = null)
         {
             if (inStr == null)
                 return null;
